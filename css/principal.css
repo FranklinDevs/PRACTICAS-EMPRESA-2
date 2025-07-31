@@ -42,6 +42,8 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 1000;
+  opacity: 0;
+  animation: aparecer 1s ease-in-out forwards;
 }
 
 /* Estilo de cada ícono social */
@@ -54,6 +56,12 @@ body {
   background-repeat: no-repeat;
   margin: 4px 0;
   border-radius: 0 5px 5px 0;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateX(5px);
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
 }
 
 /* Iconos con color e imagen personalizados */
@@ -76,6 +84,28 @@ body {
 .web {
   background-color: #5e5e5e;
   background-image: url("https://cdn-icons-png.flaticon.com/512/535/535239.png");
+}
+
+/* Animación suave al cargar */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-50%) translateX(-10px); }
+  to { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .social-bar {
+    top: auto;
+    bottom: 10%;
+    left: 10px;
+    transform: none;
+    flex-direction: row;
+  }
+
+  .social-icon {
+    border-radius: 50%;
+    margin: 0 5px;
+  }
 }
 
 /* ===============================
