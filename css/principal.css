@@ -1,0 +1,837 @@
+/* ===============================
+   VARIABLES Y CONFIGURACIÓN BASE
+   Paleta de colores personalizada
+================================== */
+:root {
+  --primary: #00b3aa; /* color verde claro primario */
+  --secondary: #333; /* color negro secundario */
+  --accent: #ff6b00; /* color naranja */
+  --light: #f8faf9; /* color blanco */
+  --dark: #212529; /* color negro */
+}
+
+/* ===============================
+   CUERPO DEL DOCUMENTO
+   Tipografía y fondo base
+================================== */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  background-color: var(--light);
+}
+
+/* Contenedor centralizado para secciones */
+.container {
+  max-width: 1200px;
+  margin: 0 auto; /* margen en automatico */
+  padding: 0 20px;
+}
+
+/* ===============================
+   BARRA LATERAL DE REDES SOCIALES
+   Fija en el lateral izquierdo
+================================== */
+.social-bar {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Estilo de cada ícono social */
+.social-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 4px 0;
+  border-radius: 0 5px 5px 0;
+}
+
+/* Iconos con color e imagen personalizados */
+.facebook {
+  background-color: #3b5998;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/733/733547.png");
+}
+.tiktok {
+  background-color: #000000;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/3046/3046121.png");
+}
+.youtube {
+  background-color: #ff0000;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/733/733646.png");
+}
+.whatsapp {
+  background-color: #25d366;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/733/733585.png");
+}
+.web {
+  background-color: #5e5e5e;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/535/535239.png");
+}
+
+/* ===============================
+   HEADER
+   Título principal con fondo gradiente
+================================== */
+header {
+  background: linear-gradient(135deg, var(--primary), #003366);
+  color: white;
+  padding: 60px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto decorativo en la parte inferior del header */
+header::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--light);
+  transform: skewY(-3deg);
+  z-index: 1;
+}
+
+/* Animación inicial del contenido del header */
+.header-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.header-content.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilo de título y subtítulo */
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   NAVEGACIÓN PRINCIPAL
+   Barra fija con enlaces
+================================== */
+nav {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+/* Estilo para los enlaces de navegación */
+.nav-link {
+  color: var(--secondary);
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subrayado animado */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ===============================
+   SECCIONES PRINCIPALES
+   Contenido del sitio
+================================== */
+main {
+  position: relative;
+  z-index: 3;
+  margin-top: -30px;
+  padding-bottom: 60px;
+}
+
+/* Animación al hacer scroll */
+section {
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilo para títulos de sección */
+h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* Línea decorativa debajo del título */
+h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--accent);
+  margin: 15px auto 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.6s ease 0.3s;
+}
+
+section.visible h2::after {
+  transform: scaleX(1);
+}
+
+/* ===============================
+   TARJETAS DE CONTENIDO
+================================== */
+.content-card {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   LISTADO DE BENEFICIOS
+================================== */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Tarjetas de beneficios con animación */
+.benefit-item {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--accent);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+/* Activación por clase animada */
+.benefits.animated .benefit-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retrasos individuales para animaciones escalonadas */
+.benefit-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.benefit-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.benefit-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.benefit-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+/* ===============================
+   VIDEO EMBEBIDO YT
+================================== */
+.video-container {
+  margin: 40px 0;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible .video-container {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.video-container iframe {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ===============================
+   BOTONES DE ACCIÓN
+================================== */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto brillante al pasar el mouse */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  background: #e05d00;
+  transform: translateY(-2px);
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
+}
+
+/* Botón centrado y alternativo */
+.btn-center {
+  display: block;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 250px;
+}
+
+.primary-btn {
+  background: var(--primary);
+}
+
+/* ===============================
+   LISTA DE BENEFICIOS EN DOS COLUMNAS
+================================== */
+.benefits-list {
+  columns: 2;
+  list-style-type: none;
+  padding: 0;
+}
+
+.benefits-list li {
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.benefits-list i {
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+
+/*icono de whatsapp Y SiamSoft */
+
+/* Contenedor de botones flotantes */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  /* Alinear verticalmente */
+  gap: 10px;
+  /* Espaciado entre botones */
+  z-index: 1000;
+}
+
+/* BOTÓN flotante */
+.whatsapp-float {
+  background-color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  /* Borde negro */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+}
+
+/* VENTANA DE CHAT-BOOT */
+.chat-box {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  background-color: #004b4d;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+  font-family: Arial, sans-serif;
+}
+
+.chat-box-header {
+  background-color: #28d6e2;
+  color: white;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+}
+
+.chat-box-body {
+  padding: 10px;
+  font-size: 14px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  background-color: #e1ffc7;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 7px;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+.chat-box textarea {
+  width: 90%;
+  height: 60px;
+  margin: 10px;
+  padding: 5px;
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.chat-box button {
+  margin: 0 10px 10px 10px;
+  padding: 8px;
+  background-color: #25d366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-box button:hover {
+  background-color: #2355dd;
+}
+
+/* Estilo de miniaturas imagenes index.html*/
+.miniatura {
+  max-width: 300px;
+  height: auto;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.miniatura:hover {
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-contenido {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cerrar:hover {
+  color: #ff6b00;
+}
+
+/* SECCIÓN PRINCIPAL FORMULARIO CONTACTO */
+.seccion-contacto {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  transition: all 0.4s ease-out;
+}
+
+/* CONTENEDOR FLEXIBLE */
+.contenedor-contacto {
+  display: flex;
+  max-width: 1100px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex-wrap: wrap;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.contenedor-contacto:hover {
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGEN IZQUIERDA */
+.contacto-imagen {
+  flex: 1;
+  min-width: 320px;
+  background-color: #fff;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.contacto-imagen:hover {
+  transform: scale(0.98);
+}
+
+.contacto-imagen img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 179, 255, 0.1));
+  transition: all 0.3s ease;
+}
+
+.contacto-imagen img:hover {
+  filter: drop-shadow(0 6px 12px rgba(0, 179, 255, 0.15));
+}
+
+/* FORMULARIO DERECHO */
+.cta-form {
+  flex: 1;
+  min-width: 320px;
+  padding: 40px;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.formulario-gmail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formulario-gmail h2 {
+  margin-bottom: 15px;
+  font-size: 26px;
+  color: #00b3ff;
+  text-shadow: 0 2px 4px rgba(0, 179, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.formulario-gmail input,
+.formulario-gmail textarea {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.formulario-gmail input:focus,
+.formulario-gmail textarea:focus {
+  border-color: #00b3ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 179, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.formulario-gmail textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.formulario-gmail button.btn {
+  background: linear-gradient(135deg, #00b3ff, #00e6aa);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 8px rgba(0, 179, 255, 0.2);
+}
+
+.formulario-gmail button.btn:hover {
+  background: linear-gradient(135deg, #009fd6, #00cc98);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 179, 255, 0.25);
+}
+
+.formulario-gmail button.btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Estilos responsivos mejorados */
+@media (max-width: 768px) {
+  .seccion-contacto {
+    padding: 40px 15px;
+  }
+  
+  .contenedor-contacto {
+    border-radius: 18px;
+    flex-direction: column;
+  }
+  
+  .contacto-imagen, .cta-form {
+    min-width: 100%;
+    padding: 25px;
+  }
+  
+  .contacto-imagen {
+    padding: 35px 25px;
+  }
+  
+  .cta-form {
+    padding: 35px;
+  }
+  
+  .formulario-gmail input,
+  .formulario-gmail textarea {
+    padding: 13px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-gmail h2 {
+    font-size: 24px;
+  }
+  
+  .formulario-gmail button.btn {
+    padding: 13px;
+    font-size: 16px;
+  }
+}
+
+/* ===============================
+   FOOTER --> Pie de pagina
+================================== */
+footer {
+  background: var(--secondary);
+  color: white;
+  padding: 60px 0 30px;
+}
+
+/* Estructura de columnas dentro del footer */
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* Columnas animadas */
+.footer-column {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+footer.animated .footer-column {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Detalle del título del footer */
+.footer-column h3 {
+  color: white;
+  margin-top: 0;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.footer-column h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--accent);
+}
+
+/* Texto y enlaces */
+.footer-column p,
+.footer-column a {
+  opacity: 0.8;
+  color: white;
+  transition: opacity 0.3s ease;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  opacity: 1;
+}
+
+/* Créditos del sitio */
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN --> Diseño adaptable
+   Ajustes móviles
+================================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    margin: 5px;
+    padding: 8px 15px;
+  }
+
+  .benefits-list {
+    columns: 1;
+  }
+
+  .cta-buttons .btn {
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* ===============================
+   LOGO EN HEADER -> ENCABEZADO
+================================== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.logo-text .tagline {
+  margin: 5px 0 0;
+  font-size: 1rem;
+  color: var(--secondary);
+}
